@@ -36,22 +36,24 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
-# registered_users = dict("bob": "123", "ann" : "pass123")
+
 separator = "-" * 40
 users = ("bob", "ann", "mike", "liz")
 passwords = ("123", "pass123", "password123", "pass123")
 
 registered_users = tuple(zip(users, passwords))
 
-print(registered_users)
+# print(registered_users)
 
-username = input("Enter user name:")
-password = input("Enter password:")
+username = input("Enter user name: ")
+password = input("Enter password: ")
 
 print(separator)
 
 if (username, password) in registered_users:
-    print(f"Welcome to the app {username}")
+    print(f"""Welcome to the app {username}
+we have 3 texts to be analyzed
+{separator}""")
     which_txt = (input("Enter a number btw. 1 and 3 to select: "))
     print(separator)
 
@@ -103,14 +105,10 @@ if (username, password) in registered_users:
             for length in words_len_sorted:
                 print(f"""{length :>3}|{"*" * int(wrds_l[length]) :<{len(wrds_l.keys())}}  |{wrds_l[length]} """)
 
-            print(wrds_l)
-            print(words_len_sorted)
-
-            print(TEXTS[int(which_txt) -1])
     elif not which_txt.isnumeric():
         print("You have to enter a number between 1 nad 3")
     else:
         print("Wrong number")
 
 else:
-    print("Wrong username or password...")
+    print("Wrong username or password, terminating the program...")
