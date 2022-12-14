@@ -61,7 +61,9 @@ we have 3 texts to be analyzed
 
         if int(which_txt) in range(1, 4):
             chosen_txt = TEXTS[int(which_txt) - 1]
-            txt_split = chosen_txt.split()
+            txt_strip = chosen_txt.replace(",", "")
+            txt_strip = txt_strip.replace(".", "")
+            txt_split = txt_strip.split()
 
             word_count = len(txt_split)
             words_upper = int(0)
@@ -97,14 +99,17 @@ we have 3 texts to be analyzed
                     wrds_l[len(word)] += 1
 
             words_len_sorted = sorted(list(wrds_l.keys()))
-            mid_col_len = int(len(wrds_l.keys()))
+            mid_col_len = sorted(wrds_l.values())[-1] + 2
 
             print(separator)
-            print(f"""{'LEN' :>2}|{'OCCURANCES'.center(mid_col_len)}  |NR. """)
+            print(f"""{'LEN' :>2}|{'OCCURANCES'.center(mid_col_len)}|NR. """)
             print(separator)
             for length in words_len_sorted:
-                print(f"""{length :>3}|{"*" * int(wrds_l[length]) :<{len(wrds_l.keys())}}  |{wrds_l[length]} """)
+                print(f"""{length :>3}|{"*" * int(wrds_l[length]) :<{mid_col_len}}|{wrds_l[length]} """)
 
+            # print(wrds_l)
+            # print(words_len_sorted)
+            # print(TEXTS[int(which_txt) -1])
     elif not which_txt.isnumeric():
         print("You have to enter a number between 1 nad 3")
     else:
